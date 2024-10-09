@@ -109,7 +109,7 @@ const navigate=useNavigate();
           </Button>
           <Button
             sx={{ backgroundColor: 'orange', color: 'white', width: '200px',marginLeft:'20px', height: '70px', fontSize: '20px', fontWeight: 'bold', }}
-            onClick={()=>navigate('/customer/orderdetails ')}
+            onClick={()=>navigate('/customer/orderdetails')}
           >
             Go to Order Details 
           </Button>

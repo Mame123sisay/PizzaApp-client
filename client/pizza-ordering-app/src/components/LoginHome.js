@@ -53,7 +53,7 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
   };
 
   const handleOrderDetail = () => {
-    navigate('/customer/orderdetails ');
+    navigate('/customer/orderdetails');
   };
 
 
@@ -83,7 +83,7 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
        
         <Typography style={styleText}>Cart</Typography>
         <Typography style={styleText}>{localStorage.getItem('userName')}</Typography>
-      <a href='' onClick={handleOrderDetail}> <Typography variant='' style={styleText}> your Order Details</Typography></a> 
+      <a href='' onClick={()=>navigate('/customer/orderdetails')}> <Typography variant='' style={styleText}> your Order Details</Typography></a> 
        <a href="#pizzas"> <Typography style={styleText}>Pizzas</Typography></a>
         <Button
           style={{ backgroundColor: 'orange', color: 'white', width: '100px' }}
