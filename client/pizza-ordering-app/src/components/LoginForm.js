@@ -49,7 +49,7 @@ const LoginForm = () => {
                 const roleName = role_name.replace(/\s+/g, '').toUpperCase();
                 localStorage.setItem('restaurantId', restaurant_id);
                 localStorage.setItem('userRole', roleName);
-                setMessage('Successfully logged in');
+                setMessage(`Successfully logged in as ${roleName}`);
             } else {
                 throw new Error('Invalid credentials');
             }
