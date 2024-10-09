@@ -22,6 +22,7 @@ import { z } from 'zod';
 import { useAbility } from '../AbilityContext';
 
 const UserManagementForm = () => {
+        const apiUrl = process.env.REACT_APP_API_URL;
     const [users, setUsers] = useState([]);
     const [fullName, setFullName] = useState('');
     const [email, setEmail] = useState('');
@@ -38,12 +39,12 @@ const UserManagementForm = () => {
     const restaurant_id = localStorage.getItem('restaurantId');
 
     const fetchUsers = async () => {
-        const response = await axios.get(`http://localhost:5000/api/users/${restaurant_id}`);
+        const response = await axios.get(`${apiUrl}/api/users/${restaurant_id}`);
         setUsers(response.data);
     };
 
     const fetchRoles = async () => {
-        const response = await axios.get(`http://localhost:5000/api/roles/restaurant/${restaurant_id}`);
+        const response = await axios.get(`${apiUrl}/api/roles/restaurant/${restaurant_id}`);
         setRoles(response.data);
     };
 
@@ -73,7 +74,7 @@ const UserManagementForm = () => {
         try {
            // userSchema.parse(userData); // Validate before sending
     
-            const response = await axios.post('http://localhost:5000/api/users', userData);
+            const response = await axios.post(`${apiUrl}/api/users`, userData);
             console.log('Response Data:', response.data); // Log the response data
     
             setUsers((prevUsers) => [...prevUsers, response.data]);
@@ -106,7 +107,7 @@ const UserManagementForm = () => {
         try {
             userSchema.parse({ fullName, email, phoneNumber, location,password, roleId });
             
-            await axios.put(`http://localhost:5000/api/user/edituser/${editingUserId}`, {
+            await axios.put(`${apiUrl}/api/user/edituser/${editingUserId}`, {
                 fullName,
                 email,
                 phoneNumber,
@@ -144,12 +145,12 @@ const UserManagementForm = () => {
 
     const toggleUserStatus = async (id, currentStatus) => {
         const newStatus = !currentStatus;
-        await axios.put(`http://localhost:5000/api/user/editstatus/${id}`, { is_active: newStatus });
+        await axios.put(`${apiUrl}/api/user/editstatus/${id}`, { is_active: newStatus });
         fetchUsers();
     };
 
     const deleteUser = async (id) => {
-        await axios.delete(`http://localhost:5000/api/user/delete/${id}`);
+        await axios.delete(`${apiUrl}/api/user/delete/${id}`);
         fetchUsers();
     };
 
