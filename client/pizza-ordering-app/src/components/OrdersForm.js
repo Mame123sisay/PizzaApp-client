@@ -48,6 +48,7 @@ const OrdersForm = () => {
             });
             console.log('Fetched orders:', response.data);
             setOrders(response.data);
+            setLoading(false);
         } catch (error) {
             console.error('Error fetching orders:', error);
         }
@@ -167,6 +168,7 @@ const OrdersForm = () => {
                             Delete
                         </Button>
                     )}
+                    
                 </>
             ),
         },
@@ -201,8 +203,10 @@ const OrdersForm = () => {
                 data={orders}
                 columns={columns}
                 style={{ marginTop: '20px' }}
+                
             />
              <MaybeLoading loading={loading}/>
+            
 
 
             {/* Modal for Order Details */}
