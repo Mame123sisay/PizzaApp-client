@@ -83,7 +83,7 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
        
         <Typography style={styleText}>Cart</Typography>
         <Typography style={styleText}>{localStorage.getItem('userName')}</Typography>
-      <a href='' onClick={()=>navigate('/customer/orderdetails')}> <Typography variant='' style={styleText}> your Order Details</Typography></a> 
+      <a  onClick={()=>navigate('/customer/orderdetails')}> <Typography variant='' style={styleText}> your Order Details</Typography></a> 
        <a href="#pizzas"> <Typography style={styleText}>Pizzas</Typography></a>
         <Button
           style={{ backgroundColor: 'orange', color: 'white', width: '100px' }}
