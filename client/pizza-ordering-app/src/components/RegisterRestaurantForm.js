@@ -74,7 +74,7 @@ const RegisterRestaurantForm = () => {
         }
 
         try {
-            const response = await axios.post(`${apiUrl}:5000/api/register`, formData, {
+            const response = await axios.post(`${apiUrl}/api/register`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },

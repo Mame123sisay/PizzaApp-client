@@ -162,8 +162,8 @@ const UserManagementForm = () => {
             setFullName(user.full_name);
             setEmail(user.email);
             setPhoneNumber(user.phone_number);
-            setLocation(user.location || ''); // Ensure location is set correctly
-            setRoleId(user.role_id || ''); // Ensure roleId is set correctly
+            setLocation(user.location || ''); // 
+            setRoleId(user.role_id || ''); //
         } else {
             resetForm();
         }
@@ -173,7 +173,7 @@ const UserManagementForm = () => {
 
     const handleClose = () => {
         setOpen(false);
-        resetForm(); // Ensure this is called
+        resetForm(); // 
     };
 
     useEffect(() => {
@@ -274,8 +274,8 @@ const UserManagementForm = () => {
                 <DialogTitle>{editingUserId ? 'Edit User' : 'Add New User'}</DialogTitle>
                 <DialogContent>
                     <form onSubmit={(e) => {
-                        e.preventDefault(); // Prevent page refresh
-                        editingUserId ? updateUser() : addUser(); // Call appropriate function
+                        e.preventDefault(); // 
+                        editingUserId ? updateUser() : addUser(); // 
                     }}>
                         <TextField
                             autoFocus

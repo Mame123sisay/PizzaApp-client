@@ -19,7 +19,7 @@ const navigate=useNavigate();
   useEffect(() => {
     const fetchPizzaDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/pizza/${id}`);
+        const response = await axios.get(`${apiUrl}/api/pizza/${id}`);
         setPizza(response.data);
 
         // Initialize toppings state if topping_ids exists
@@ -58,7 +58,7 @@ const navigate=useNavigate();
     };
 
     try {
-      await axios.post('http://localhost:5000/api/order', orderData);
+      await axios.post(`${apiUrl}/api/order`, orderData);
       setOrderConfirmed(true); // Set order confirmed
     } catch (error) {
       console.error('Error placing order:', error);
@@ -76,7 +76,7 @@ const navigate=useNavigate();
       <Box sx={{ display: 'flex', paddingTop: '60px' }}>
         <Box
           component="img"
-          src={`http://localhost:5000${pizza.image_path}`}
+          src={`${apiUrl}${pizza.image_path}`}
           alt={pizza.pizza_name}
           sx={{ width: '100%', maxWidth: 400, mb: 2, ml: 3, borderRadius: '20px' }}
         />
