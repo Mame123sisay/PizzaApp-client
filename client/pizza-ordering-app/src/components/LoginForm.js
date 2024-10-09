@@ -31,42 +31,44 @@ const LoginForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+    
         try {
             // Validate input
             loginSchema.parse({ email, password });
-
+    
             const response = await axios.post(`${apiUrl}/api/login`, { email, password });
             const { restaurant_id, role_name, role_id } = response.data;
             console.log(response.data);
-            if (role_id === 0 && role_name ===null) {
+    
+            // Set message based on role
+            if (role_id === 0 && role_name === null) {
                 localStorage.setItem('restaurantId', restaurant_id);
                 localStorage.setItem('userRole', 'SUPERADMIN');
-                setSuccess(true);
                 setMessage('Successfully logged in as SUPERADMIN');
-                setTimeout(() => {
-
-                    navigate('/Dashboard');
-                }, 2000);
-               
-            } else if (role_id > 0 && role_id !=null) {
+            } else if (role_id > 0) {
                 const roleName = role_name.replace(/\s+/g, '').toUpperCase();
                 localStorage.setItem('restaurantId', restaurant_id);
                 localStorage.setItem('userRole', roleName);
-                setSuccess(true);
                 setMessage('Successfully logged in');
-                setTimeout(() => {
-                    navigate('/Dashboard');
-                }, 2000);
-              
             } else {
-                throw new Error('Invalid credentials '); // Explicit error for unexpected role IDs
+                throw new Error('Invalid credentials');
             }
+    
+            // Show the success modal
+            setSuccess(true);
+            handleClickOpen();
+    
+            // Delay navigation
+            setTimeout(() => {
+                navigate('/Dashboard');
+            }, 2000);
+    
         } catch (error) {
+            // Handle validation and other errors
             if (error instanceof z.ZodError) {
                 const newErrors = {};
                 error.errors.forEach(err => {
-                    newErrors[err.path[0]] = err.message; // Map errors to input fields
+                    newErrors[err.path[0]] = err.message;
                 });
                 setErrors(newErrors);
                 setMessage('Please correct the highlighted errors.');
