@@ -10,7 +10,7 @@ import {
     MenuItem,
     Select,
     FormControl,
-    TextField,
+    TextField,CircularProgress
 } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import Close from '@mui/icons-material/Close';
@@ -27,8 +27,15 @@ const OrdersForm = () => {
     const [customerPhone, setCustomerPhone] = useState('');
     const [selectedToppings, setSelectedToppings] = useState('');
     const [pizzaName, setPizzaName] = useState('');
+    const[loading,setLoading]=useState(true);
+
 
     const ability = useAbility();
+    const MaybeLoading=({loading})=>{
+        return loading ? (<CircularProgress/>): null;
+
+    }
+
 
     const fetchOrders = async () => {
         try {
@@ -195,6 +202,8 @@ const OrdersForm = () => {
                 columns={columns}
                 style={{ marginTop: '20px' }}
             />
+             <MaybeLoading loading={loading}/>
+
 
             {/* Modal for Order Details */}
             <Dialog open={open} onClose={handleClose}>
