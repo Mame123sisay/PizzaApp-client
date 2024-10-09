@@ -37,11 +37,11 @@ const LoginForm = () => {
             loginSchema.parse({ email, password });
     
             const response = await axios.post(`${apiUrl}/api/login`, { email, password });
-            const { restaurant_id, role_name, role_id } = response.data;
+            const { restaurant_id, role_name, role_id ,roless} = response.data;
             console.log(response.data);
     
             // Set message based on role
-            if (role_id === 0 && role_name === null) {
+            if (role_id === 0 && role_name === null && roless==='Super Admin') {
                 localStorage.setItem('restaurantId', restaurant_id);
                 localStorage.setItem('userRole', 'SUPERADMIN');
                 setMessage('Successfully logged in as SUPERADMIN');
