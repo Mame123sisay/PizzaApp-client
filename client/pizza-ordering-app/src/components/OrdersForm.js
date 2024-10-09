@@ -199,13 +199,14 @@ const OrdersForm = () => {
                     Filter
                 </Button>
             </Box>
+            <MaybeLoading loading={loading}/>
             <MRT
                 data={orders}
                 columns={columns}
                 style={{ marginTop: '20px' }}
                 
             />
-             <MaybeLoading loading={loading}/>
+           
             
 
 
