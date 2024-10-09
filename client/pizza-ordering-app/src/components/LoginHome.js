@@ -25,7 +25,7 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 
  const LoginHome = () => {
   const {userName}=useParams();
-  const apiUrl = process.env.REACT_APP_API_URL; // Set your server base URL here
+  const apiUrl = process.env.REACT_APP_API_URL; // 
   const [pizzaData, setPizzaData] = useState([]);
   const [restaurantName, setRestaurantName] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -53,7 +53,7 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
   };
 
   const handleOrderDetail = () => {
-    navigate('/customer/orderdetails');
+    navigate('/customer/orderdetails ');
   };
 
 
