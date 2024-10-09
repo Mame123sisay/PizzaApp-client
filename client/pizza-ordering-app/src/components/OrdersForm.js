@@ -31,10 +31,7 @@ const OrdersForm = () => {
 
 
     const ability = useAbility();
-    const MaybeLoading=({loading})=>{
-        return loading ? (<CircularProgress/>): null;
-
-    }
+   
 
 
     const fetchOrders = async () => {
@@ -53,6 +50,10 @@ const OrdersForm = () => {
             console.error('Error fetching orders:', error);
         }
     };
+    const MaybeLoading=({loading})=>{
+        return loading ? (<CircularProgress/>): null;
+
+    }
 
     const updateOrderStatus = async (id, newStatus) => {
         if (ability.can('update', 'OrderStatus')) {
