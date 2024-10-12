@@ -21,7 +21,7 @@ const schema = z.object({
     path: ['confirmPassword'],
 });
 
-const RegisterRestaurantForm = (onRegister) => {
+const RegisterRestaurantForm = ({onRegister}) => {
     const apiUrl = process.env.REACT_APP_API_URL;
     const navigate = useNavigate();
     const [modalOpen, setModalOpen] = useState(false);
