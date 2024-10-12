@@ -5,7 +5,7 @@ import logo from './pizza.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { z } from 'zod';
    
-const LoginForm = () => {
+const LoginForm = ({onLogin}) => {
     const apiUrl = process.env.REACT_APP_API_URL;
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -44,11 +44,13 @@ const LoginForm = () => {
             if (role_id === 0 && role_name === null && roless==='Super Admin') {
                 localStorage.setItem('restaurantId', restaurant_id);
                 localStorage.setItem('userRole', 'SUPERADMIN');
+                onLogin('SUPERADMIN'); // Call onLogin with the role
                 setMessage('Successfully logged in as SUPERADMIN');
             } else if (role_id > 0) {
                 const roleName = role_name.replace(/\s+/g, '').toUpperCase();
                 localStorage.setItem('restaurantId', restaurant_id);
                 localStorage.setItem('userRole', roleName);
+                onLogin(roleName); // Call onLogin with the role
                 setMessage(`Successfully logged in as ${roleName}`);
             } else {
                 throw new Error('Invalid credentials');

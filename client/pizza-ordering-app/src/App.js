@@ -1,5 +1,5 @@
 // src/App.js
-import React,{useState,useEffect} from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import LoginForm from './components/LoginForm';
@@ -15,27 +15,37 @@ import { defineAbilitiesFor } from './abilities';
 import { AbilityProvider } from './AbilityContext';
 
 function App() {
- 
-    const userRole =localStorage.getItem('userRole');
-    console.log(userRole);
-   // const abilities = defineAbilitiesFor(userRole); // Define abilities
-  console.log(userRole);
+    const [userRole, setUserRole] = useState(localStorage.getItem('userRole'));
+
+    const handleLogin = (role) => {
+        // Update the user role and set it in local storage
+        setUserRole(role);
+        localStorage.setItem('userRole', role);
+    };
+
     return (
-        <AbilityProvider userRole={userRole}> {/* Wrap your app */}
-            <Router>
-                <Routes>
-                    <Route path='/login' element={<LoginForm />} />
-                    <Route path='/signup' element={<RegisterRestaurantForm />} />
-                    <Route path='/dashboard' element={<Dashboard />} />
-                    <Route path='/' element={<HomePage />} />
-                    <Route path='/customer/signup' element={<RegisterCustomerForm />} />
-                    <Route path='/customer/login' element={<CustomerLoginForm />} />
-                    <Route path='/order/pizzadetail/:id' element={<PizzaDetailForm />} />
-                    <Route path='/loginhome' element={<LoginHome />} />
-                    <Route path='/customer/orderdetails' element={<CustomerOrderDetail />} />
-                </Routes>
-            </Router>
-        </AbilityProvider>
+        <Router>
+            <Routes>
+                <Route path='/login' element={<LoginForm onLogin={handleLogin} />} />
+                <Route path='/signup' element={<RegisterRestaurantForm />} />
+                <Route path='/' element={<HomePage />} />
+                <Route path='/customer/signup' element={<RegisterCustomerForm />} />
+                <Route path='/customer/login' element={<CustomerLoginForm onLogin={handleLogin} />} />
+                <Route path='/order/pizzadetail/:id' element={<PizzaDetailForm />} />
+                <Route path='/loginhome' element={<LoginHome />} />
+                <Route path='/customer/orderdetails' element={<CustomerOrderDetail />} />
+                
+                {/* Wrap only the Dashboard in AbilityProvider */}
+                <Route 
+                    path='/dashboard' 
+                    element={
+                        <AbilityProvider userRole={userRole}>
+                            <Dashboard />
+                        </AbilityProvider>
+                    } 
+                />
+            </Routes>
+        </Router>
     );
 }
 
