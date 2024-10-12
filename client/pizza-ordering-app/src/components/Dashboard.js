@@ -28,8 +28,9 @@ import UserManagementForm from './UserManagementForm';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 const Dashboard = () => {
+    const apiUrl=process.env.REACT_APP_API_URL;
    
-    const role=localStorage.getItem('userRole');
+   const [restaurantLogo,setRestaurantLogo]=useState('');
 
     const ability = useAbility();
     const navigate = useNavigate();
@@ -38,6 +39,24 @@ const Dashboard = () => {
     const handleSectionChange = (section) => {
         setActiveSection(section);
     };
+    const fetchRestaurantLogo = async () => {
+        try {
+            const response = await axios.get(`${apiUrl}/api/restaurants/`);
+            console.log(response.data);
+
+            if (response.data.length > 0) {
+                const { logo_location } = response.data[0]; 
+                setRestaurantLogo(`${apiUrl}${logo_location}`); //
+            }
+        } catch (error) {
+            console.error('Error fetching restaurant logo:', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchRestaurantLogo();
+    }, []);
+
 
     const handleLogout = () => {
         localStorage.removeItem('restaurantId');
@@ -65,7 +84,7 @@ const Dashboard = () => {
         <Box sx={{ display: 'flex' }}>
             <Drawer variant="permanent" sx={{ width: 240, flexShrink: 0 }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', padding: '16px' }}>
-                    <img src={logo} alt="Logo" style={{ width: '50px' }} />
+                    <img src={restaurantLogo} alt="Logo" style={{ width: '50px' }} />
                     <Typography variant="h6" sx={{ marginLeft: 1 }}>Dashboard</Typography>
                 </Box>
                 <List>
