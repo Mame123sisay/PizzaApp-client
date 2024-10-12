@@ -46,8 +46,10 @@ const Dashboard = () => {
             console.log(response.data);
 
             if (response.data.length > 0) {
-                const { logo_location } = response.data[0]; 
+                const {logo_location} = response.data[0]; 
+
                 setRestaurantLogo(`${apiUrl}${logo_location}`); //
+                alert(logo_location);
             }
         } catch (error) {
             console.error('Error fetching restaurant logo:', error);
