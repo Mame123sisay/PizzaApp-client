@@ -21,7 +21,7 @@ const schema = z.object({
     path: ['confirmPassword'],
 });
 
-const RegisterRestaurantForm = () => {
+const RegisterRestaurantForm = (onRegister) => {
     const apiUrl = process.env.REACT_APP_API_URL;
     const navigate = useNavigate();
     const [modalOpen, setModalOpen] = useState(false);
@@ -81,6 +81,7 @@ const RegisterRestaurantForm = () => {
             });
             const { restaurantId, logo } = response.data; //
             localStorage.setItem('restaurantId', restaurantId);
+            onRegister('SuperAdmin');
             setModalMessage('Registration successful');
             setModalTitle('Success');
             setModalOpen(true);

@@ -27,10 +27,10 @@ function App() {
         <Router>
             <Routes>
                 <Route path='/login' element={<LoginForm onLogin={handleLogin} />} />
-                <Route path='/signup' element={<RegisterRestaurantForm />} />
+                <Route path='/signup' element={<RegisterRestaurantForm onRegister={handleLogin}/>} />
                 <Route path='/' element={<HomePage />} />
                 <Route path='/customer/signup' element={<RegisterCustomerForm />} />
-                <Route path='/customer/login' element={<CustomerLoginForm onLogin={handleLogin} />} />
+                <Route path='/customer/login' element={<CustomerLoginForm  />} />
                 <Route path='/order/pizzadetail/:id' element={<PizzaDetailForm />} />
                 <Route path='/loginhome' element={<LoginHome />} />
                 <Route path='/customer/orderdetails' element={<CustomerOrderDetail />} />
