@@ -81,7 +81,7 @@ const RegisterRestaurantForm = (onRegister) => {
             });
             const { restaurantId, logo } = response.data; //
             localStorage.setItem('restaurantId', restaurantId);
-            onRegister('SuperAdmin');
+            onRegister('SUPERADMIN');
             setModalMessage('Registration successful');
             setModalTitle('Success');
             setModalOpen(true);
