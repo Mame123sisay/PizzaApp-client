@@ -31,6 +31,7 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 const Dashboard = () => {
     const apiUrl=process.env.REACT_APP_API_URL;
     const restaurantId=localStorage.getItem('restaurantId');
+
    const [restaurantLogo,setRestaurantLogo]=useState('');
 
     const ability = useAbility();
@@ -49,7 +50,7 @@ const Dashboard = () => {
                 const {logo_location} = response.data[0]; 
 
                 setRestaurantLogo(`${apiUrl}${logo_location}`); //
-                alert(logo_location);
+               
             }
         } catch (error) {
             console.error('Error fetching restaurant logo:', error);
