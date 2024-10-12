@@ -29,7 +29,7 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 const Dashboard = () => {
     const apiUrl=process.env.REACT_APP_API_URL;
-   
+    const restaurantId=localStorage.getItem('restaurantId');
    const [restaurantLogo,setRestaurantLogo]=useState('');
 
     const ability = useAbility();
@@ -41,7 +41,7 @@ const Dashboard = () => {
     };
     const fetchRestaurantLogo = async () => {
         try {
-            const response = await axios.get(`${apiUrl}/api/restaurants/`);
+            const response = await axios.get(`${apiUrl}/api/restaurantslogo/${restaurantId}`);
             console.log(response.data);
 
             if (response.data.length > 0) {
