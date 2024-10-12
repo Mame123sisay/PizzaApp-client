@@ -58,7 +58,7 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 
 
   const handleLogout = () => {
-    localStorage.removeItem('customerId');
+    localStorage.removeItem('userId');
     navigate(`/`);
   };
   const handleClick = (pizzaId) => {

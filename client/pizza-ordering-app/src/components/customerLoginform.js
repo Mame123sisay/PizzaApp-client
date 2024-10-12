@@ -57,9 +57,9 @@ const CustomerLoginForm = () => {
         try {
             const response = await axios.post(`${apiUrl}/api/customer/login`, data);
             const { userId,userName } = response.data;
-            console.log(userName);
+           // console.log(userName);
             localStorage.setItem('userId', userId);
-            localStorage.setItem('userName', userName);
+            //localStorage.setItem('userName', userName);
             setModalMessage('Login successful');
             setModalTitle('Success');
             setModalOpen(true);
