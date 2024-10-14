@@ -17,6 +17,7 @@ import logo from './pizza.png';
 import mame from './mame.jpg';
 import magherita from '../image/magherita.jpg';
 import axios from 'axios';
+import SearchIcon from '@mui/icons-material/Search';
 import SlidingComponent from './SlidingComponent';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
