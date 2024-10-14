@@ -12,7 +12,8 @@ const SlidingComponent = () => {
                 width: '95%',
                 backgroundColor: 'rgb(72,61,139)',
                 position: 'relative',
-                borderRadius: '10px'
+                borderRadius: '10px',
+                marginTop: '40px',
             }}
         >
             <Box 
